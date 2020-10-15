@@ -28,13 +28,12 @@ class InertiaViewLoader {
         this.packages = {};
 
         collect(glob.sync(
-            'vendor/**/**/composer.json'
+            'vendor/**/**/package.json'
         )).map(file => {
             return JSON.parse(fs.readFileSync(file, "utf8"))
         }).filter((file, key) => {
             return file.extra && file.extra.inertia !== undefined;
         }).each(file => {
-            console.log(file);
             let view = path.resolve(__dirname, viewpath, 'vendor', file.extra.inertia.namespace);
             this.packages[file.extra.inertia.namespace] = fs.existsSync(view) ? `${viewpath}/vendor/${file.extra.inertia.namespace}` : `vendor/${file.name}/resources/views`;
         })
