@@ -23,6 +23,21 @@ Package views resolves `teams::welcome` as follows:
 This repo provides an added `view` macro for inertia to use the `viewFinder` to resolve the views.
 This resolves the right path for the Component on the server.
 
+```php
+// AppServiveProvider.php
+Inertia::macro('view', function ($component, $props = []) {
+    $finder = app('view')->getFinder();
+
+    $finder->addExtension('inertia.vue');
+
+    $component = $finder->find($component);
+
+    $component = Str::after($component, base_path() . '/');
+
+    return Inertia::render($component, $props);
+});
+```
+
 To achieve this the client side part is very easy:
 
 ```js
