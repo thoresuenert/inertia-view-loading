@@ -1,3 +1,12 @@
+
+## Installation
+check this projekt out and
+check `https://github.com/thoresuenert/inertia-teams` to a folder `inertia-teams` next to this folder.
+
+then run 
+```
+comoposer install
+```
 ## Idea
 
 We interpret inertia as the view layer and inertia as a template engine.
