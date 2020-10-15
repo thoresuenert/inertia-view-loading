@@ -16,5 +16,6 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
 
-    return Inertia::view('teams::welcome');
+    // return Inertia::view('teams::welcome');
+    return Inertia::render('teams::welcome');
 });

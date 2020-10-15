@@ -123,3 +123,23 @@ mix.extend('registerPlugins', new RegisterPlugins());
                     return import(`@views/${path}.vue`).then(module => module.default)
                 },
 ```
+
+idee
+```js
+ resolveComponent: path => {
+                    path = path.replaceAll(".", "/")
+                    let [alias, route] = path.split("::");
+
+                    let resolver = process.env.plugins;
+                    let viewPath = process.env.viewpath;
+                    
+                    if (alias && resolver[alias]) {
+                        path = `${resolver[alias]}/${route}`;
+                    } else {
+                        path = `${viewPath}/${path}`
+                    }
+
+                    return import(`../../${path}.inertia.vue`).then(module => module.default)
+                },
+```
+

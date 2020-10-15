@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"837b966f7cbe60cff1e6","1":"a631480212917718e203","2":"b231107b920c348c2642"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"837b966f7cbe60cff1e6","1":"73016671f3f281a4840b","2":"b231107b920c348c2642"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -201,33 +201,21 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./ lazy recursive ^\\.\\/.*$ include: \\.inertia.vue$":
-/*!****************************************************************!*\
-  !*** . lazy ^\.\/.*$ include: \.inertia.vue$ namespace object ***!
-  \****************************************************************/
+/***/ "./ lazy recursive ^\\.\\/.*\\.inertia\\.vue$":
+/*!******************************************************!*\
+  !*** . lazy ^\.\/.*\.inertia\.vue$ namespace object ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./resources/views/vendor/teams/testwelcome.inertia": [
-		"./resources/views/vendor/teams/testwelcome.inertia.vue",
+	"./resources/views/vendor/teams/welcome.inertia.vue": [
+		"./resources/views/vendor/teams/welcome.inertia.vue",
 		1
-	],
-	"./resources/views/vendor/teams/testwelcome.inertia.vue": [
-		"./resources/views/vendor/teams/testwelcome.inertia.vue",
-		1
-	],
-	"./resources/views/welcome.inertia": [
-		"./resources/views/welcome.inertia.vue",
-		2
 	],
 	"./resources/views/welcome.inertia.vue": [
 		"./resources/views/welcome.inertia.vue",
 		2
-	],
-	"./vendor/thoresuenert/inertia-teams/resources/views/welcome.inertia": [
-		"../inertia-teams/resources/views/welcome.inertia.vue",
-		0
 	],
 	"./vendor/thoresuenert/inertia-teams/resources/views/welcome.inertia.vue": [
 		"../inertia-teams/resources/views/welcome.inertia.vue",
@@ -251,7 +239,7 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = "./ lazy recursive ^\\.\\/.*$ include: \\.inertia.vue$";
+webpackAsyncContext.id = "./ lazy recursive ^\\.\\/.*\\.inertia\\.vue$";
 module.exports = webpackAsyncContext;
 
 /***/ }),
@@ -11069,6 +11057,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(_inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__["plugin"]);
@@ -11078,8 +11078,26 @@ new vue__WEBPACK_IMPORTED_MODULE_1__["default"]({
     return h(_inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__["app"], {
       props: {
         initialPage: JSON.parse(el.dataset.page),
-        resolveComponent: function resolveComponent(name) {
-          return __webpack_require__("./ lazy recursive ^\\.\\/.*$ include: \\.inertia.vue$")("./".concat(name)).then(function (module) {
+        //   resolveComponent: name => import(/* webpackInclude: /\.inertia.vue$/ */ `../../${name}`).then(module => module.default),
+        resolveComponent: function resolveComponent(path) {
+          path = path.replaceAll(".", "/");
+
+          var _path$split = path.split("::"),
+              _path$split2 = _slicedToArray(_path$split, 2),
+              namespace = _path$split2[0],
+              route = _path$split2[1];
+
+          var hints = {"teams":"resources/views/vendor/teams"};
+          var viewPath = "resources/views";
+
+          if (namespace && hints[namespace]) {
+            path = "".concat(hints[namespace], "/").concat(route);
+          } else {
+            path = "".concat(viewPath, "/").concat(path);
+          }
+
+          console.log(path);
+          return __webpack_require__("./ lazy recursive ^\\.\\/.*\\.inertia\\.vue$")("./".concat(path, ".inertia.vue")).then(function (module) {
             return module["default"];
           });
         }

@@ -20,6 +20,9 @@
     "dependencies": {
         "@inertiajs/inertia": "^0.4.0",
         "@inertiajs/inertia-vue": "^0.3.1",
+        "collect.js": "^4.28.4",
+        "fs": "0.0.1-security",
+        "glob": "^7.1.6",
         "vue": "^2.6.12"
     }
 }
